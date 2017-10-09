@@ -34,6 +34,7 @@ namespace Vidly.Controllers
 
 
             ViewBag.kek = movie;
+            ViewBag.hehe = "test gita";
             return View(viewModel);
         }
 

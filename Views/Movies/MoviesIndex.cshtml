@@ -1,0 +1,20 @@
+﻿@using System.Activities.Statements
+@using Vidly.Models
+@model Vidly.ViewModels.MovieViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Filmy</h2>
+
+<ul>
+   
+        @foreach(Movie mov in Model.Movies)
+        {
+            <li>@mov.Name</li>;
+            
+        }
+    
+</ul>

@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Vidly.Models;
+using Vidly.ViewModels;
+
+namespace Vidly.Controllers
+{
+    public class CustomersController : Controller
+    {
+        // GET: Customers
+        CustomerViewModel model = new CustomerViewModel
+        {
+            Customers = new List<Customer>
+            {
+                new Customer { Id = 0, Name = "Stefan Batory" },
+                new Customer {Id = 1, Name = "Krzysztof Knoblaucht" }
+            }
+        };
+
+        public ActionResult CustomersIndex()
+        {
+
+
+            return View(model);
+        }
+
+        [Route("customers/details/{id}")]
+        public ActionResult GetCustomer(int id)
+        {
+
+            Customer cust = model.Customers.Find(c => c.Id == id);
+            if (cust == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cust);
+        }
+    }
+}

@@ -1,0 +1,13 @@
+﻿@model Vidly.Models.Customer
+
+@{
+    ViewBag.Title = "GetCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetCustomer</h2>
+
+<p>@Model.Name</p>
+<p>@Model.Id</p>
+
+<input type="button" value="Back" onclick="location.href='@Url.Action("CustomersIndex", "Customers")'"/>

@@ -6,8 +6,14 @@
 }
 
 <h2>GetCustomer</h2>
+<ul>
+    <li>@Model.Name</li>
+    <li>@Model.MembershipType.Name</li>
+    @if (@Model.Birthdate != null)
+    {
+        <li>Data urodzenia @Model.Birthdate</li>
+    }
+</ul>
 
-<p>@Model.Name</p>
-<p>@Model.Id</p>
 
 <input type="button" value="Back" onclick="location.href='@Url.Action("CustomersIndex", "Customers")'"/>

@@ -1,6 +1,6 @@
 ﻿@using System.Activities.Statements
 @using Vidly.Models
-@model Vidly.ViewModels.MovieViewModel
+@model List<Movie>
 
 @{
     ViewBag.Title = "Index";
@@ -9,12 +9,27 @@
 
 <h2>Filmy</h2>
 
-<ul>
-   
-        @foreach(Movie mov in Model.Movies)
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Nazwa filmu</th>
+        <th>Gatunek</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach(Movie mov in Model)
         {
-            <li>@mov.Name</li>;
+            <tr>
+                <td>@Html.ActionLink(@mov.Name, "Details", "Movies", new { id = @mov.Id }, null)</td>
+                <td>@mov.MovieGenre.Name</td>
+            </tr>
+            
             
         }
+    </tbody>
     
-</ul>
+
+</table>
+   
+
+    

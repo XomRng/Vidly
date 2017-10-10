@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
@@ -35,7 +36,7 @@ namespace Vidly.Controllers
         public ActionResult CustomersIndex()
         {
 
-            var model = _context.Customers.ToList();
+            var model = _context.Customers.Include(c=>c.MembershipType).ToList();
             return View(model);
         }
 

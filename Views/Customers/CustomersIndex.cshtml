@@ -1,6 +1,7 @@
 ﻿@using Vidly.Models
 
 @model List<Customer>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,7 +19,9 @@
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
-                Customer
+                <th>Klient  </th>
+                <th>Discount Rate</th>
+               
             </tr>
             </thead>
             <tbody>
@@ -27,6 +30,7 @@
 
                 <tr>
                     <td>@Html.ActionLink(@cust.Name, "GetCustomer", "Customers", new { id = @cust.Id }, null)</td>
+                    <td>@cust.MembershipType.DiscountRate%</td>
                 </tr>
                 
                 

@@ -51,5 +51,10 @@ namespace Vidly.Controllers
             }
             return View(cust);
         }
+
+        public ActionResult New()
+        {
+            return View();
+        }
     }
 }

@@ -70,7 +70,10 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Create(NewCustomerViewModel viewModel) // to jest model binding, parametr musi byc takiego samego typu jak model na View ktory przesyla dane.
         {
-            return View();
+            _context.Customers.Add(viewModel.customer);
+            _context.SaveChanges();
+
+            return RedirectToAction("CustomersIndex", "Customers");
         }
     }
 }

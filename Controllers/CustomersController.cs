@@ -62,7 +62,15 @@ namespace Vidly.Controllers
             };
 
 
+
+
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Create(NewCustomerViewModel viewModel) // to jest model binding, parametr musi byc takiego samego typu jak model na View ktory przesyla dane.
+        {
+            return View();
         }
     }
 }

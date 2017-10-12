@@ -30,7 +30,9 @@
             {
 
                 <tr>
-                    <td>@Html.ActionLink(@cust.Name, "GetCustomer", "Customers", new { id = @cust.Id }, null)</td>
+                    @*<td>@Html.ActionLink(@cust.Name, "GetCustomer", "Customers", new { id = @cust.Id }, null)</td>*@
+                    <td>@Html.ActionLink(@cust.Name, "Edit", "Customers", new { id = @cust.Id }, null)</td>
+
                     <td>@cust.MembershipType.DiscountRate%</td>
                     <td>@cust.MembershipType.Name</td>
                 </tr>

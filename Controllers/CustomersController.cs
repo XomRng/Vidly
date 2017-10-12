@@ -56,7 +56,7 @@ namespace Vidly.Controllers
         {
             var membershipTypes = _context.MembershipTypes.ToList();
 
-            var viewModel = new NewCustomerViewModel()
+            var viewModel = new CustomerFormViewModel()
             {
                 MembershipTypes = membershipTypes
             };
@@ -64,17 +64,51 @@ namespace Vidly.Controllers
 
 
 
-            return View(viewModel);
+            return View("CustomerForm",viewModel);
         }
 
         [HttpPost]
-        public ActionResult Create(NewCustomerViewModel viewModel) // to jest model binding, parametr musi byc takiego samego typu jak model na View ktory przesyla dane.
+        public ActionResult Save(CustomerFormViewModel formViewModel) // to jest model binding, parametr musi byc takiego samego typu jak model na View ktory przesyla dane.
         { //http post jako parametr przesyla do metody to co zostanie wpisane w VIEW przez uzytkownika
-            _context.Customers.Add(viewModel.Customer);
+            if (formViewModel.Customer.Id == 0)
+                _context.Customers.Add(formViewModel.Customer);
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == formViewModel.Customer.Id);
+
+                //TryUpdateModel(customerInDb, "", new string[] {"Name", "Email"}); // to jest kijowe, trzeba manualnie
+                customerInDb.Name = formViewModel.Customer.Name;
+                customerInDb.Birthdate = formViewModel.Customer.Birthdate;
+                customerInDb.MembershipTypeId = formViewModel.Customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsletter = formViewModel.Customer.IsSubscribedToNewsletter;
+
+                //trzeba poczytac o automapper, podobno mapuje wg konwencji
+                //Mapper.Map(customer, customerInDb);
+
+            //musze też poczytać o DTO, klasa ktora przetrzymuje tylko te dane ktore chce przekazac dalej w celach bezpieczenstwa.
+
+            }
+           
             _context.SaveChanges();
 
             //zwraca sie przekierowanie do jakiejs innej akcji niz ta ponieważ ta tylko zapisuje dane.
             return RedirectToAction("CustomersIndex", "Customers"); 
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            if (customer == null)
+                return HttpNotFound();
+
+            var viewModel = new CustomerFormViewModel()
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+            //zwracamy inny view niż w nazwie metody tak wiec konwencja nie zadziała
+            // dlatego w return view musimy sprecyzowac jaki view bedziemy zwracać
+            return View("CustomerForm", viewModel);
         }
     }
 }

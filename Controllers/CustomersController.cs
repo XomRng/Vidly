@@ -68,6 +68,7 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        //To SAVE jest połączone z nazwa w BeginForm na view
         public ActionResult Save(CustomerFormViewModel formViewModel) // to jest model binding, parametr musi byc takiego samego typu jak model na View ktory przesyla dane.
         { //http post jako parametr przesyla do metody to co zostanie wpisane w VIEW przez uzytkownika
             if (formViewModel.Customer.Id == 0)

@@ -10,16 +10,24 @@ namespace Vidly.Models
     {
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public MovieGenre MovieGenre { get; set; }
 
+        [Required]
         public int MovieGenreId { get; set; }
+
         [Required]
-        public DateTime ReleaseDate { get; set; }
+        [Display(Name = "Data wyjscia filmu")]
+        public DateTime? ReleaseDate { get; set; }
+
         [Required]
-        public DateTime DateAdded { get; set; }
+        [Display(Name = "Data dodania")]
+        public DateTime? DateAdded { get; set; }
+
         [Required]
+        [Display(Name = "Ilosc w magazynie")]
         public int NumberInStock { get; set; }
 
 

@@ -9,6 +9,10 @@
 
 <h2>Filmy</h2>
 
+@*<button type ="button" class="btn btn-primary" onclick="@Url.Action("Edit", "Movies")">Nowy</button>*@
+@*<input type="button" value="Back" onclick="location.href='@Url.Action("CustomersIndex", "Customers")'" />*@
+<input type="button" value="Nowy film" onclick="location.href='@Url.Action("NewCustomer", "Movies")'" />
+
 <table class="table table-bordered table-hover">
     <thead>
     <tr>
@@ -20,7 +24,7 @@
         @foreach(Movie mov in Model)
         {
             <tr>
-                <td>@Html.ActionLink(@mov.Name, "Details", "Movies", new { id = @mov.Id }, null)</td>
+                <td>@Html.ActionLink(@mov.Name, "Edit", "Movies", new { id = @mov.Id }, null)</td>
                 <td>@mov.MovieGenre.Name</td>
             </tr>
             

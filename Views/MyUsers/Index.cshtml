@@ -1,0 +1,32 @@
+﻿@model Vidly.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Użytkownicy</h2>
+<p><a class="btn btn-default" href="@Url.Action("NewUser", "MyUsers")">Nowy użytkownik</a></p>
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nazwa</th>
+        <th>Login</th>
+        <th>Rodzaj</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>  @user.Id    </td>
+                <td>@user.Name</td>
+                <td>@user.Login</td>
+                <td>@user.UserType.Name</td>
+                <td>
+                    <a class="btn btn-default" href="@Url.Action("EditUser", "MyUsers")">Edytuj użytkownika &raquo;</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

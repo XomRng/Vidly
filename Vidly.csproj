@@ -268,6 +268,10 @@
     <Compile Include="Migrations\201710161554180_changeannotations.Designer.cs">
       <DependentUpon>201710161554180_changeannotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710161723259_changeinannotations.cs" />
+    <Compile Include="Migrations\201710161723259_changeinannotations.Designer.cs">
+      <DependentUpon>201710161723259_changeinannotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -417,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710161554180_changeannotations.resx">
       <DependentUpon>201710161554180_changeannotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710161723259_changeinannotations.resx">
+      <DependentUpon>201710161723259_changeinannotations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

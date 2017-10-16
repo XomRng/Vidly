@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Owin.Security.Provider;
 using Vidly.Models;
 using Vidly.ViewModels;
+using WebGrease.Css.Extensions;
 
 namespace Vidly.Controllers
 {
@@ -111,7 +114,21 @@ namespace Vidly.Controllers
                 movieInDb.ReleaseDate = viewModel.Movie.ReleaseDate;
             }
 
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                string wynik = "";
+                e.EntityValidationErrors.First().ValidationErrors.ForEach(er =>
+                    {
+                       wynik += er.ErrorMessage + Environment.NewLine;
+                    });
+                return Content(wynik);
+
+            }
+            
             return RedirectToAction("MoviesIndex", "Movies");
         }
 

@@ -32,18 +32,48 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult SaveUser(UserViewModel viewModel)
         {
+            if (viewModel.MyUser.Id == 0)
+            {
+                _context.MyUsers.Add(viewModel.MyUser);
+            }
+            else
+            {
+                MyUser usr = _context.MyUsers.Single(u => u.Id == viewModel.MyUser.Id);
+
+                usr.Name = viewModel.MyUser.Name;
+                usr.Login = viewModel.MyUser.Login;
+                usr.Password = viewModel.MyUser.Password;
+                usr.UserTypeId = viewModel.MyUser.UserTypeId;
+
+            }
+            _context.SaveChanges();
 
             return RedirectToAction("Index", "MyUsers");
         }
 
-        public ActionResult EditUser()
+        public ActionResult EditUser(int id)
         {
-            return View("UserForm");
+            MyUser user = _context.MyUsers.Single(u => u.Id == id);
+
+            UserViewModel viewModel = new UserViewModel()
+            {
+                MyUser = user,
+                UserTypes =  _context.MyUserTypes.ToList()
+            };
+            
+
+            return View("UserForm", viewModel);
         }
 
         public ActionResult NewUser()
         {
-            return View("UserForm");
+            UserViewModel viewModel = new UserViewModel()
+            {
+                MyUser = new MyUser(),
+                UserTypes = _context.MyUserTypes.ToList()
+            };
+
+            return View("UserForm", viewModel);
         }
 
     }

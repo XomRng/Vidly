@@ -13,7 +13,8 @@ namespace Vidly.Models
             // daje nam dostęp do obiektu sprawdzanego, w tym wypadku Customer
             var customer = (Customer) validationContext.ObjectInstance;
 
-            if (customer.MembershipTypeId == 1 || customer.MembershipTypeId == 0)
+            if (customer.MembershipTypeId == MembershipType.PayAsYouGo 
+                || customer.MembershipTypeId == MembershipType.Unknown)
                 return ValidationResult.Success;
 
             if(customer.Birthdate == null)

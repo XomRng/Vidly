@@ -13,5 +13,10 @@ namespace Vidly.Models
         public byte DiscountRate { get; set; }
         public string Name { get; set; }
 
+        //refactoring magic number by static field
+        public static readonly byte Unknown = 0;
+        public static readonly byte PayAsYouGo = 1;
+
+        //you can use ENUM also
     }
 }

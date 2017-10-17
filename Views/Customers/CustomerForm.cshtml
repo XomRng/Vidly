@@ -33,6 +33,8 @@
     </div>
     //ukryty parametr przesyłany do metody kontrolera, potrzebny jesli nie chcesz go wyswietlac a jesli w HTTP Post chcesz go mieć przesłanego w parametrze
     @Html.HiddenFor(m=>m.Customer.Id)
+    //Dodaje cookie do komputera usera i ukrytą forme
+    @Html.AntiForgeryToken()
     <button type ="submit" class="btn btn-primary">Save</button> 
 }
 @*//takie cos trzeba dodawac zeby byla walidacja po stronie klienta*@

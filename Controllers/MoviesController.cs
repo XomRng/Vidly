@@ -98,11 +98,27 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(MovieViewModel viewModel)
         {
+            //if(viewModel.Movie.DateAdded == null)
+            //    viewModel.Movie.DateAdded = DateTime.Now;
+            //ModelState.Clear();
+            //ValidateModel(viewModel);
+
+            if (!ModelState.IsValid)
+            {
+                var localViewModel = new MovieViewModel()
+                {
+                    Movie = viewModel.Movie,
+                    MovieGenres = _context.MovieGenres.ToList()
+                };
+                return View("MovieForm", localViewModel);
+            }
+
             if (viewModel.Movie.Id == 0)
             {
-                viewModel.Movie.DateAdded = DateTime.Now;
+               // viewModel.Movie.DateAdded = DateTime.Now;
                 _context.Movies.Add(viewModel.Movie);
             }
             else
@@ -114,20 +130,20 @@ namespace Vidly.Controllers
                 movieInDb.ReleaseDate = viewModel.Movie.ReleaseDate;
             }
 
-            try
-            {
+            //try
+            //{
                 _context.SaveChanges();
-            }
-            catch (DbEntityValidationException e)
-            {
-                string wynik = "";
-                e.EntityValidationErrors.First().ValidationErrors.ForEach(er =>
-                    {
-                       wynik += er.ErrorMessage + Environment.NewLine;
-                    });
-                return Content(wynik);
+            //}
+            //catch (DbEntityValidationException e)
+            //{
+            //    string wynik = "";
+            //    e.EntityValidationErrors.First().ValidationErrors.ForEach(er =>
+            //        {
+            //           wynik += er.ErrorMessage + Environment.NewLine;
+            //        });
+            //    return Content(wynik);
 
-            }
+            //}
             
             return RedirectToAction("MoviesIndex", "Movies");
         }

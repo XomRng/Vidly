@@ -19,6 +19,7 @@ namespace Vidly.Models
         public int MovieGenreId { get; set; }
 
         [Required]
+        [ReleaseDateAbove1950]
         [Display(Name = "Data wyjscia filmu")]
         public DateTime? ReleaseDate { get; set; }
 
@@ -27,9 +28,14 @@ namespace Vidly.Models
         public DateTime? DateAdded { get; set; }
 
         [Required]
+        [Range(0,20, ErrorMessage = "Ilość musi być pomiędzy 0 a 20.")]
         [Display(Name = "Ilosc w magazynie")]
         public int NumberInStock { get; set; }
 
+        public Movie()
+        {
+            DateAdded = DateTime.Now;
+        }
 
         // //movies/random
 

@@ -272,6 +272,14 @@
     <Compile Include="Migrations\201710161723259_changeinannotations.Designer.cs">
       <DependentUpon>201710161723259_changeinannotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710171624385_movievalidation.cs" />
+    <Compile Include="Migrations\201710171624385_movievalidation.Designer.cs">
+      <DependentUpon>201710171624385_movievalidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710171637599_movievalidation1.cs" />
+    <Compile Include="Migrations\201710171637599_movievalidation1.Designer.cs">
+      <DependentUpon>201710171637599_movievalidation1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -281,6 +289,7 @@
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieGenre.cs" />
+    <Compile Include="Models\MovieModelValidations.cs" />
     <Compile Include="Models\MyUser.cs" />
     <Compile Include="Models\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -425,6 +434,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710161723259_changeinannotations.resx">
       <DependentUpon>201710161723259_changeinannotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710171624385_movievalidation.resx">
+      <DependentUpon>201710171624385_movievalidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710171637599_movievalidation1.resx">
+      <DependentUpon>201710171637599_movievalidation1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

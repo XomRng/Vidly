@@ -35,3 +35,8 @@
     @Html.HiddenFor(m=>m.Customer.Id)
     <button type ="submit" class="btn btn-primary">Save</button> 
 }
+@*//takie cos trzeba dodawac zeby byla walidacja po stronie klienta*@
+@section scripts
+{
+    @Scripts.Render("~/ bundles / jqueryval")
+}

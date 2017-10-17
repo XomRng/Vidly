@@ -99,7 +99,7 @@ namespace Vidly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(MovieViewModel viewModel)
+        public ActionResult Save(Movie viewModel)
         {
             //if(viewModel.Movie.DateAdded == null)
             //    viewModel.Movie.DateAdded = DateTime.Now;
@@ -108,26 +108,26 @@ namespace Vidly.Controllers
 
             if (!ModelState.IsValid)
             {
-                var localViewModel = new MovieViewModel()
+                var localViewModel = new MovieViewModel(viewModel)
                 {
-                    Movie = viewModel.Movie,
+                    //Movie = viewModel.Movie,
                     MovieGenres = _context.MovieGenres.ToList()
                 };
                 return View("MovieForm", localViewModel);
             }
 
-            if (viewModel.Movie.Id == 0)
+            if (viewModel.Id == 0)
             {
                // viewModel.Movie.DateAdded = DateTime.Now;
-                _context.Movies.Add(viewModel.Movie);
+                _context.Movies.Add(viewModel);
             }
             else
             {
-                Movie movieInDb = _context.Movies.Single(m=>m.Id == viewModel.Movie.Id);
-                movieInDb.Name = viewModel.Movie.Name;
-                movieInDb.MovieGenreId = viewModel.Movie.MovieGenreId;
-                movieInDb.NumberInStock = viewModel.Movie.NumberInStock;
-                movieInDb.ReleaseDate = viewModel.Movie.ReleaseDate;
+                Movie movieInDb = _context.Movies.Single(m=>m.Id == viewModel.Id);
+                movieInDb.Name = viewModel.Name;
+                movieInDb.MovieGenreId = viewModel.MovieGenreId;
+                movieInDb.NumberInStock = viewModel.NumberInStock;
+                movieInDb.ReleaseDate = viewModel.ReleaseDate;
             }
 
             //try
@@ -152,9 +152,9 @@ namespace Vidly.Controllers
         {
             var movie = _context.Movies.Include(m=>m.MovieGenre).Single(m => m.Id == id);
 
-            MovieViewModel movieModel = new MovieViewModel()
+            MovieViewModel movieModel = new MovieViewModel(movie)
             {
-                Movie = movie,
+                
                 MovieGenres = _context.MovieGenres.ToList()
             };
 
@@ -166,7 +166,7 @@ namespace Vidly.Controllers
         {
             var viewModel = new MovieViewModel()
             {
-                Movie = new Movie(),
+                //Movie = new Movie(),
                 MovieGenres = _context.MovieGenres.ToList()
             };
 

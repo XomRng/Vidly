@@ -30,20 +30,30 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveUser(UserViewModel viewModel)
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveUser(MyUser viewModel)
         {
-            if (viewModel.MyUser.Id == 0)
+            if (!ModelState.IsValid)
             {
-                _context.MyUsers.Add(viewModel.MyUser);
+                var localViewModel = new UserViewModel(viewModel)
+                {
+                    UserTypes = _context.MyUserTypes.ToList()
+                };
+                return View("UserForm", localViewModel);
+            }
+
+            if (viewModel.Id == 0)
+            {
+                _context.MyUsers.Add(viewModel);
             }
             else
             {
-                MyUser usr = _context.MyUsers.Single(u => u.Id == viewModel.MyUser.Id);
+                MyUser usr = _context.MyUsers.Single(u => u.Id == viewModel.Id);
 
-                usr.Name = viewModel.MyUser.Name;
-                usr.Login = viewModel.MyUser.Login;
-                usr.Password = viewModel.MyUser.Password;
-                usr.UserTypeId = viewModel.MyUser.UserTypeId;
+                usr.Name = viewModel.Name;
+                usr.Login = viewModel.Login;
+                usr.Password = viewModel.Password;
+                usr.UserTypeId = viewModel.UserTypeId;
 
             }
             _context.SaveChanges();
@@ -55,9 +65,8 @@ namespace Vidly.Controllers
         {
             MyUser user = _context.MyUsers.Single(u => u.Id == id);
 
-            UserViewModel viewModel = new UserViewModel()
-            {
-                MyUser = user,
+            UserViewModel viewModel = new UserViewModel(user)
+            {           
                 UserTypes =  _context.MyUserTypes.ToList()
             };
             
@@ -69,7 +78,6 @@ namespace Vidly.Controllers
         {
             UserViewModel viewModel = new UserViewModel()
             {
-                MyUser = new MyUser(),
                 UserTypes = _context.MyUserTypes.ToList()
             };
 

@@ -61,15 +61,17 @@
             $("#customers .js-delete").on("click",
                 function () {
                     var button = $(this)
-                    if (confirm("Czy jesteś pewny, że chcesz skasować tego klienta?")) {
-                        $.ajax({
-                            url: "/api/customers/" + button.attr("data-customer-id"),
-                            method: "DELETE",
-                            success: function() {
-                                button.parent("tr").remove();
-                            }
-                        });
-                    }
+                    bootbox.confirm("Czy jesteś pewny, że chcesz skasować tego klienta", function(result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/customers/" + button.attr("data-customer-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    button.parent("tr").remove();
+                                }
+                            });
+                        }
+                    })
                 });
         });
     </script>

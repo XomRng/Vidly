@@ -16,14 +16,16 @@
     }
     else
     {
-        <table class="table table-bordered table-hover">
+        //Tag "id=customers" dany na potrzeby java scripta
+        <table id ="customers" class="table table-bordered table-hover">
             <thead>
-            <tr>
-                <th>Klient  </th>
-                <th>Discount Rate</th>
-                <th>Membership type</th>
-               
-            </tr>
+                <tr>
+                    <th>Klient  </th>
+                    <th>Discount Rate</th>
+                    <th>Membership type</th>
+                    <th>Delete</th>
+                    
+                </tr>
             </thead>
             <tbody>
             @foreach (Customer cust in Model)
@@ -35,6 +37,10 @@
 
                     <td>@cust.MembershipType.DiscountRate%</td>
                     <td>@cust.MembershipType.Name</td>
+                    <td>
+                        <button data-customer-id="@cust.Id" class="btn-link js-delete">Kasuj</button>
+                        @*js-delete to specjalna referencja dla javascripta by ja widzial *@
+                    </td>
                 </tr>
                 
                 
@@ -48,3 +54,23 @@
 
 <p><a class="btn btn-default" href="@Url.Action("New", "Customers")">Nowy klient &raquo;</a></p>
        
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#customers .js-delete").on("click",
+                function () {
+                    var button = $(this)
+                    if (confirm("Czy jesteś pewny, że chcesz skasować tego klienta?")) {
+                        $.ajax({
+                            url: "/api/customers/" + button.attr("data-customer-id"),
+                            method: "DELETE",
+                            success: function() {
+                                button.parent("tr").remove();
+                            }
+                        });
+                    }
+                });
+        });
+    </script>
+}

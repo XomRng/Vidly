@@ -57,8 +57,9 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
-            $("#customers .js-delete").on("click",
+        $(document).ready(function () {
+            $("#customers").DataTable();
+            $("#customers").on("click", ".js-delete",
                 function () {
                     var button = $(this)
                     bootbox.confirm("Czy jesteś pewny, że chcesz skasować tego klienta", function(result) {

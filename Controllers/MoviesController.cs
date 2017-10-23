@@ -83,9 +83,9 @@ namespace Vidly.Controllers
             //};
 
             //model.Movies = movies;
-            var movies = _context.Movies.Include(m=>m.MovieGenre).ToList();
+           // var movies = _context.Movies.Include(m=>m.MovieGenre).ToList();
 
-            return View(movies);
+            return View();
         }
 
         public ActionResult Details(int id)

@@ -17,6 +17,8 @@ namespace Vidly.DTOs
         [Required]
         public int MovieGenreId { get; set; }
 
+        public MovieGenre MovieGenre { get; set; }
+
         [Required]
         //[ReleaseDateAbove1950]
         [Display(Name = "Data wyjscia filmu")]

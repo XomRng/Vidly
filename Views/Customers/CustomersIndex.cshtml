@@ -14,7 +14,6 @@
     <thead>
     <tr>
         <th>Klient  </th>
-        <th>Discount Rate</th>
         <th>Membership type</th>
         <th>Delete</th>
                     
@@ -32,7 +31,7 @@
 {
     <script>
         $(document).ready(function () {
-            $("#customers").DataTable({
+            var table = $("#customers").DataTable({
                 ajax: {
                     url: "/api/customers",
                     dataSrc: ""
@@ -45,7 +44,7 @@
                         }
                     },
                     {
-                        data: "name"
+                        data: "membershipType.name"
                     },
                     {
                         data: "id",
@@ -66,7 +65,7 @@
                                 url: "/api/customers/" + button.attr("data-customer-id"),
                                 method: "DELETE",
                                 success: function () {
-                                    button.parent("tr").remove();
+                                    table.row(button.parent("tr")).remove().draw();                                  
                                 }
                             });
                         }

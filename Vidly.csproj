@@ -223,6 +223,7 @@
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\MyUsersController.cs" />
     <Compile Include="DTOs\CustomerDto.cs" />
+    <Compile Include="DTOs\MembershipTypeDto.cs" />
     <Compile Include="DTOs\MovieDto.cs" />
     <Compile Include="DTOs\MyUserDto.cs" />
     <Compile Include="Global.asax.cs">

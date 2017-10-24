@@ -66,10 +66,10 @@ namespace Vidly.Controllers
             MyUser user = _context.MyUsers.Single(u => u.Id == id);
 
             UserViewModel viewModel = new UserViewModel(user)
-            {           
-                UserTypes =  _context.MyUserTypes.ToList()
+            {
+                UserTypes = _context.MyUserTypes.ToList()
             };
-            
+
 
             return View("UserForm", viewModel);
         }

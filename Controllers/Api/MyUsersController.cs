@@ -34,7 +34,7 @@ namespace Vidly.Controllers.Api
             var myUser = _context.MyUsers.SingleOrDefault(u => u.Id == id);
             if (myUser == null)
                 return NotFound();
-            
+
             return Ok(Mapper.Map<MyUser, MyUserDto>(myUser));
         }
 

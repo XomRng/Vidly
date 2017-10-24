@@ -15,22 +15,20 @@
 
 <table id="movies" class="table table-bordered table-hover">
     <thead>
-    <tr>
-        <th>Nazwa filmu</th>
-        <th>Gatunek</th>
-        <th>Kasowanie</th>
-    </tr>
+        <tr>
+            <th>Nazwa filmu</th>
+            <th>Gatunek</th>
+            <th>Kasowanie</th>
+        </tr>
     </thead>
-    <tbody>
+    <tbody></tbody>
 
-    </tbody>
-    
 
 </table>
 @section scripts
 {
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             var table = $("#movies").DataTable({
                 ajax: {
                     url: "/api/movies",
@@ -39,7 +37,7 @@
                 columns: [
                     {
                         data: "name",
-                        render: function(data, type, movie) {
+                        render: function (data, type, movie) {
                             return "<a href='/movies/edit/" + movie.id + "'>" + movie.name;
                         }
                     },
@@ -48,7 +46,7 @@
                     },
                     {
                         data: "id",
-                        render: function(data) {
+                        render: function (data) {
                             return "<button class='btn-link js-delete' data-movie-id=" + data + ">Delete</button>";
                         }
                     }
@@ -57,15 +55,15 @@
 
             $("#movies").on("click",
                 ".js-delete",
-                function() {
+                function () {
                     var button = $(this);
                     bootbox.confirm("Czy jesteś pewny, że chcesz skasować ten film?",
-                        function(result) {
+                        function (result) {
                             if (result) {
                                 $.ajax({
                                     url: "/api/movies/" + button.attr("data-movie-id"),
                                     method: "DELETE",
-                                    success: function() {
+                                    success: function () {
                                         table.row(button.parent("tr")).remove().draw();
                                     }
                                 });
@@ -75,6 +73,6 @@
         })
     </script>
 }
-   
 
-    
+
+

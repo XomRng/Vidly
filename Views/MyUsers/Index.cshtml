@@ -39,7 +39,13 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
+        
+    
+
+        $(document).ready(function () {
+
+            var table = $("#myusers").DataTable();
+
             $("#myusers .js-delete").on("click",
                 function () {
                     var button = $(this)

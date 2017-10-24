@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -20,9 +21,10 @@ namespace Vidly.Controllers.Api
         }
 
         //Get /api/MyUsers
-        public IEnumerable<MyUserDto> GetMyUsers()
+        public IHttpActionResult GetMyUsers()
         {
-            return _context.MyUsers.ToList().Select(Mapper.Map<MyUser,MyUserDto>);
+            var myusers = _context.MyUsers.Include(u => u.UserType).ToList().Select(Mapper.Map<MyUser, MyUserDto>);
+            return Ok(myusers);
         }
 
         //Get /api/MyUsers/1

@@ -21,7 +21,7 @@ namespace Vidly.Controllers
         [Route("użytkownicy")]
         public ActionResult Index()
         {
-            List<MyUser> users = _context.MyUsers.Include(u=>u.UserType).ToList();
+            List<MyUser> users = _context.MyUsers.Include(u => u.UserType).ToList();
             UserViewModel viewModel = new UserViewModel()
             {
                 Users = users

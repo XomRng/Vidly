@@ -21,6 +21,8 @@ namespace Vidly.DTOs
         [Required]
         public int UserTypeId { get; set; }
 
+        public UserType UserType { get; set; }
+
  
     }
 }

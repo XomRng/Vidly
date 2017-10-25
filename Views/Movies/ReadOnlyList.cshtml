@@ -1,0 +1,52 @@
+﻿@using System.Activities.Statements
+@using Vidly.Models
+@model List<Movie>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Filmy</h2>
+
+@*<button type ="button" class="btn btn-primary" onclick="@Url.Action("Edit", "Movies")">Nowy</button>*@
+@*<input type="button" value="Back" onclick="location.href='@Url.Action("CustomersIndex", "Customers")'" />*@
+
+
+<table id="movies" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Nazwa filmu</th>
+            <th>Gatunek</th>
+           
+        </tr>
+    </thead>
+    <tbody></tbody>
+
+
+</table>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#movies").DataTable({
+                ajax: {
+                    url: "/api/movies",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "movieGenre.name"
+                    }
+                ]
+            });
+
+        })
+    </script>
+}
+
+
+

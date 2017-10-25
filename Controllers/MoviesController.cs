@@ -162,7 +162,7 @@ namespace Vidly.Controllers
             return View("MovieForm", movieModel);
         }
 
-        [Authorize(Roles="CanManageMovies")]
+        [Authorize(Roles=RoleName.CanManageMovies)]
         public ActionResult NewMovie()
         {
             var viewModel = new MovieViewModel()

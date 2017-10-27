@@ -73,6 +73,7 @@ namespace Vidly.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(100, ErrorMessage = "{0} musi mieć przynajmniej {1] znaków.", MinimumLength =  = 6)]
         [Display(Name = "Telefon")]
         public string Phone { get; set; }
         [Required]
@@ -84,7 +85,7 @@ namespace Vidly.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {1} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

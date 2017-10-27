@@ -16,11 +16,12 @@ namespace Vidly.Controllers
     {
 
         private ApplicationDbContext _context;
-
+       
         public MoviesController()
         {
             _context = new ApplicationDbContext();
         }
+  
 
         protected override void Dispose(bool disposing)
         {
@@ -54,7 +55,7 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
-
+        [Authorize(Roles = RoleName.CanManageMovies)]
         //movies
         public ActionResult Index(int? pageIndex, string sortBy)
         {
@@ -71,7 +72,7 @@ namespace Vidly.Controllers
         {
             return Content(year + "/" + month);
         }
-
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult MoviesIndex()
         {
             //MovieViewModel model = new MovieViewModel();
@@ -88,7 +89,7 @@ namespace Vidly.Controllers
             return View("List");
             return View("ReadOnlyList");
         }
-
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Details(int id)
         {
             Movie mov = _context.Movies.Include(m=>m.MovieGenre).SingleOrDefault(m => m.Id == id);
@@ -97,7 +98,7 @@ namespace Vidly.Controllers
 
             return View(mov);
         }
-
+        [Authorize(Roles = RoleName.CanManageMovies)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Movie viewModel)
@@ -148,7 +149,7 @@ namespace Vidly.Controllers
             
             return RedirectToAction("MoviesIndex", "Movies");
         }
-
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.Include(m=>m.MovieGenre).Single(m => m.Id == id);

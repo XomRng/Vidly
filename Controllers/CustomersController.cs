@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
 using System.Data.Entity;
+using System.Runtime.Caching;
 
 namespace Vidly.Controllers
 {
@@ -35,7 +36,13 @@ namespace Vidly.Controllers
 
         public ActionResult CustomersIndex()
         {
+            //przypominam ze lepiej nie uzywac magicznychj stringow jak "Genres' i lepiej zdefiniowac gdzies consta
+            if (MemoryCache.Default["Genres"] == null)
+            {
+                MemoryCache.Default["Genres"] = _context.MovieGenres.ToList();
+            }
 
+            var genres = MemoryCache.Default["Genres"] as IEnumerable<MovieGenre>;
            // var model = _context.Customers.Include(c=>c.MembershipType).ToList();
             return View();
         }

@@ -238,6 +238,7 @@
     <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
     <Compile Include="Controllers\Api\MyUsersController.cs" />
+    <Compile Include="Controllers\Api\NewRentalsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -247,6 +248,7 @@
     <Compile Include="DTOs\MembershipTypeDto.cs" />
     <Compile Include="DTOs\MovieDto.cs" />
     <Compile Include="DTOs\MyUserDto.cs" />
+    <Compile Include="DTOs\NewRentalDto.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -339,6 +341,18 @@
     <Compile Include="Migrations\201710261656544_addphonetoregistermodel.Designer.cs">
       <DependentUpon>201710261656544_addphonetoregistermodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710301833049_AddRentalModel.cs" />
+    <Compile Include="Migrations\201710301833049_AddRentalModel.Designer.cs">
+      <DependentUpon>201710301833049_AddRentalModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710301834314_modifyrental.cs" />
+    <Compile Include="Migrations\201710301834314_modifyrental.Designer.cs">
+      <DependentUpon>201710301834314_modifyrental.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710301837273_rent2.cs" />
+    <Compile Include="Migrations\201710301837273_rent2.Designer.cs">
+      <DependentUpon>201710301837273_rent2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -351,6 +365,7 @@
     <Compile Include="Models\MovieModelValidations.cs" />
     <Compile Include="Models\MyUser.cs" />
     <Compile Include="Models\MyUserModelValidations.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -695,6 +710,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710261656544_addphonetoregistermodel.resx">
       <DependentUpon>201710261656544_addphonetoregistermodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710301833049_AddRentalModel.resx">
+      <DependentUpon>201710301833049_AddRentalModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710301834314_modifyrental.resx">
+      <DependentUpon>201710301834314_modifyrental.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710301837273_rent2.resx">
+      <DependentUpon>201710301837273_rent2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

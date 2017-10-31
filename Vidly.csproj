@@ -357,6 +357,10 @@
     <Compile Include="Migrations\201710310520540_NumberAvailableInMovies.Designer.cs">
       <DependentUpon>201710310520540_NumberAvailableInMovies.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710310523566_seedNumberAvialable.cs" />
+    <Compile Include="Migrations\201710310523566_seedNumberAvialable.Designer.cs">
+      <DependentUpon>201710310523566_seedNumberAvialable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -726,6 +730,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710310520540_NumberAvailableInMovies.resx">
       <DependentUpon>201710310520540_NumberAvailableInMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710310523566_seedNumberAvialable.resx">
+      <DependentUpon>201710310523566_seedNumberAvialable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

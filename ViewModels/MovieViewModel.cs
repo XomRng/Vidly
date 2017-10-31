@@ -52,6 +52,7 @@ namespace Vidly.ViewModels
             DateAdded = movie.DateAdded;
             NumberInStock = movie.NumberInStock;
             DateAdded = DateTime.Now;
+            
 
         }
     }

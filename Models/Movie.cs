@@ -39,6 +39,7 @@ namespace Vidly.Models
         public Movie()
         {
             DateAdded = DateTime.Now;
+            NumberAvailable = NumberInStock;
         }
 
         // //movies/random

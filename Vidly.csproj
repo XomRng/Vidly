@@ -353,6 +353,10 @@
     <Compile Include="Migrations\201710301837273_rent2.Designer.cs">
       <DependentUpon>201710301837273_rent2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710310520540_NumberAvailableInMovies.cs" />
+    <Compile Include="Migrations\201710310520540_NumberAvailableInMovies.Designer.cs">
+      <DependentUpon>201710310520540_NumberAvailableInMovies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -719,6 +723,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710301837273_rent2.resx">
       <DependentUpon>201710301837273_rent2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710310520540_NumberAvailableInMovies.resx">
+      <DependentUpon>201710310520540_NumberAvailableInMovies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -34,6 +34,10 @@ namespace Vidly.ViewModels
         [Display(Name = "Ilosc w magazynie")]
         public int? NumberInStock { get; set; }
 
+        [Required]
+        [Display(Name = "Dostępna ilość")]
+        public int NumberAvailable { get; set; }
+
         public MovieViewModel()
         {
             Id = 0;

@@ -32,5 +32,9 @@ namespace Vidly.DTOs
         //[Range(0, 20, ErrorMessage = "Ilość musi być pomiędzy 0 a 20.")]
         [Display(Name = "Ilosc w magazynie")]
         public int NumberInStock { get; set; }
+
+        [Required]
+        [Display(Name = "Dostępna ilość")]
+        public int NumberAvailable { get; set; }
     }
 }

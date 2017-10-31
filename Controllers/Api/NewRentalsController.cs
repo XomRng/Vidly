@@ -24,7 +24,7 @@ namespace Vidly.Controllers.Api
             if (newRental.MovieIds.Count == 0)
                 return BadRequest("No movie Ids have been given.");
 
-            var customer = _context.Customers.Single(c => c.Id == newRental.CustomerId);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == newRental.CustomerId);
             if (customer == null)
                 return BadRequest("CustomerId is not valid");
 

@@ -14,7 +14,9 @@ namespace Vidly
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/datatables/jquery.datatables.js",
-                        "~/Scripts/datatables/datatables.bootstrap.js"));
+                        "~/Scripts/datatables/datatables.bootstrap.js",
+                        "~/Scripts/typeahead.bundle.js"
+                        ));
 
             //client side validation bundle
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -30,6 +32,7 @@ namespace Vidly
                       "~/Content/bootstrap-lumen.css",
                       //to sprawia ze data table wygladaja jak bootstrapowwe datatably
                       "~/Content/datatables/css/datatables.bootstrap.css",
+                      "~/Content/typeahead.css",
                       "~/Content/site.css"));
         }
     }

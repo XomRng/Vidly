@@ -22,13 +22,17 @@ namespace Vidly.Controllers.Api
 
         //GET /api/movies/
         [Authorize(Roles = RoleName.CanManageMovies)]
-        public IHttpActionResult GetMovies()
+        public IHttpActionResult GetMovies(string query = null)
         {
-            var moviesDtos = _context.Movies.
-                Include(m=>m.MovieGenre)           
-                .ToList()
+            var moviesQuery = _context.Movies.
+                Include(m=>m.MovieGenre);
+
+            if (!String.IsNullOrWhiteSpace(query))
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query) && m.NumberAvailable > 0);
+
+            var moviesDto = moviesQuery                       
                 .Select(Mapper.Map<Movie, MovieDto>);
-            return Ok(moviesDtos);
+            return Ok(moviesDto);
         }
 
         //GET /api/movies/1

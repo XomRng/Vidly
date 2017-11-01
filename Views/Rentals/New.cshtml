@@ -12,7 +12,7 @@
     <div class="form-group">
         <label>Customer</label>
         <div id="tt-container">
-            <input id="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
+            <input id="customer" name="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
         </div>
         
     </div>      
@@ -20,13 +20,13 @@
     <div class="form-group">
         <label>Movie</label>
         <div id="tt-container">
-            <input id="movie" type="text" value="" class="form-control" />
+            <input id="movie" name="movie" data-rule-atLeastOneMovie="true" type="text" value="" class="form-control" />
         </div>
         
     </div>
     <div class="row">
         <div class="col-md-4 col-sm-4">
-            <ul id="movies" class="list-group"></ul>
+            <ul id="movies" name="movies" class="list-group"></ul>
         </div>
     </div>
     
@@ -88,11 +88,16 @@
 
             $.validator.addMethod("validCustomer",
                 function() {
-                    return vm.CustomerId && vm.customerId !== 0;
+                    return vm.CustomerId && vm.CustomerId !== 0;
                     
                 }, "Wybierz prawidlowego klienta");
 
-            $("#newRental").validate({
+            $.validator.addMethod("atLeastOneMovie",
+                function() {
+                    return  vm.MovieIds.length > 0;
+                }, "Musisz wybrać przynajmniej jeden film.");
+
+            var validator = $("#newRental").validate({
                 submitHandler: function () {
 
                     //e.preventDefault();
@@ -104,10 +109,21 @@
                         })
                         .done(function () {
                             toastr.success("Udalo sie wynajac filmy!");
+
+                            $("#customer").typeahead("val", "");
+                            $("#customer").value = ""
+                            $("#movie").typeahead("val", "");
+                            $("#movies").empty();
+
+
+                            vm = { MovieIds: [] };
+
+                            validator.resetForm();
                         })
                         .fail(function () {
                             toastr.error("Stalo sie cos zlego");
                         });
+                    return false;
                 }
             });
 

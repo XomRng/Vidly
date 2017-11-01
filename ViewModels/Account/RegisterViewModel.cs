@@ -10,9 +10,10 @@ namespace Vidly.ViewModels.Account
     public class RegisterViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "{0} musi mieć przynajmniej {1] znaków.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} musi mieć przynajmniej {1} znaków.", MinimumLength = 6)]
         [Display(Name = "Telefon")]
         public string Phone { get; set; }
+
         [Required]
         [Display(Name = "Driving License")]
         public string DrivingLicense { get; set; }

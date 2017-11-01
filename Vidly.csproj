@@ -362,6 +362,10 @@
     <Compile Include="Migrations\201710310523566_seedNumberAvialable.Designer.cs">
       <DependentUpon>201710310523566_seedNumberAvialable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711011121434_fixphone.cs" />
+    <Compile Include="Migrations\201711011121434_fixphone.Designer.cs">
+      <DependentUpon>201711011121434_fixphone.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -742,6 +746,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710310523566_seedNumberAvialable.resx">
       <DependentUpon>201710310523566_seedNumberAvialable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711011121434_fixphone.resx">
+      <DependentUpon>201711011121434_fixphone.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

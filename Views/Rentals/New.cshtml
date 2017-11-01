@@ -24,15 +24,19 @@
         </div>
         
     </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <ul id="movies" class="list-group"></ul>
+        </div>
+    </div>
     
-    <ul id="movies" class="list-group"></ul>
     
     <button class="btn btn-primary">Submit</button>
 </form>
 
 @section scripts
 {
-    <script>
+    <script> 
         $(document).ready(function () {
             var vm = {
                 movieIds: []
@@ -76,7 +80,7 @@
                 display: 'name',
                 source: movies
             }).on("typeahead:select", function (e, movie) {
-                $("#movies").append("<li>" + movie.name + "</li>");
+                $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
                 $("#movie").typeahead("val", "");
                 vm.movieIds.push(movie.id);
             });

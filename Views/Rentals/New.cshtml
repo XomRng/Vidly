@@ -12,7 +12,7 @@
     <div class="form-group">
         <label>Customer</label>
         <div id="tt-container">
-            <input id="customer" type="text" value="" class="form-control" />
+            <input id="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
         </div>
         
     </div>      
@@ -36,6 +36,7 @@
 
 @section scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
     <script> 
         $(document).ready(function () {
             var vm = {                
@@ -85,21 +86,31 @@
                 vm.MovieIds.push(movie.id);
             });
 
-            $("#newRental").submit(function(e) {
-                e.preventDefault();
+            $.validator.addMethod("validCustomer",
+                function() {
+                    return vm.CustomerId && vm.customerId !== 0;
+                    
+                }, "Wybierz prawidlowego klienta");
 
-                $.ajax({
-                        url: "/api/NewRentals",
-                        method: "POST",
-                        data: vm
-                    })
-                    .done(function() {
-                        toastr.success("Udalo sie wynajac filmy!");
-                    })
-                    .fail(function() {
-                        toastr.error("Stalo sie cos zlego");
-                    });
+            $("#newRental").validate({
+                submitHandler: function () {
+
+                    //e.preventDefault();
+
+                    $.ajax({
+                            url: "/api/NewRentals",
+                            method: "POST",
+                            data: vm
+                        })
+                        .done(function () {
+                            toastr.success("Udalo sie wynajac filmy!");
+                        })
+                        .fail(function () {
+                            toastr.error("Stalo sie cos zlego");
+                        });
+                }
             });
+
         });
     </script>
 }

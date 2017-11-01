@@ -29,7 +29,7 @@ namespace Vidly.DTOs
         public DateTime? DateAdded { get; set; }
 
         [Required]
-        //[Range(0, 20, ErrorMessage = "Ilość musi być pomiędzy 0 a 20.")]
+        //[Range(0, 200, ErrorMessage = "Ilość musi być pomiędzy 0 a 200.")]
         [Display(Name = "Ilosc w magazynie")]
         public int NumberInStock { get; set; }
 

@@ -42,6 +42,7 @@ namespace Vidly.Controllers.Api
                 };
                 _context.Rentals.Add(rental);
             }
+            
             _context.SaveChanges();
 
             return Ok("");

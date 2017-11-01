@@ -15,7 +15,7 @@ using Vidly.ViewModels.Account;
 
 namespace Vidly.Controllers
 {
-    [Authorize]
+   
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

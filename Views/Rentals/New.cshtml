@@ -5,7 +5,7 @@
  
 }
 
-<h2>title</h2>
+<h2>Nowe wypożyczenie</h2>
 
 
 <form id="newRental">
@@ -38,8 +38,8 @@
 {
     <script> 
         $(document).ready(function () {
-            var vm = {
-                movieIds: []
+            var vm = {                
+                MovieIds: []
         };
             var customers = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -69,7 +69,7 @@
                 display: 'name',
                 source: customers
             }).on("typeahead:select", function(e, customer) {
-                vm.customerId = customer.id;
+                vm.CustomerId = customer.id;
             });
 
             $('#movie').typeahead({
@@ -82,22 +82,22 @@
             }).on("typeahead:select", function (e, movie) {
                 $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
                 $("#movie").typeahead("val", "");
-                vm.movieIds.push(movie.id);
+                vm.MovieIds.push(movie.id);
             });
 
             $("#newRental").submit(function(e) {
                 e.preventDefault();
 
                 $.ajax({
-                        url: "api/newRentals",
-                        method: "post",
+                        url: "/api/NewRentals",
+                        method: "POST",
                         data: vm
                     })
                     .done(function() {
                         console.log("done");
                     })
                     .fail(function() {
-
+                        console.log("fail");
                     });
             });
         });

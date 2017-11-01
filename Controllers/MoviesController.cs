@@ -12,6 +12,7 @@ using WebGrease.Css.Extensions;
 
 namespace Vidly.Controllers
 {
+    
     public class MoviesController : Controller
     {
 
@@ -55,8 +56,9 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
-        [Authorize(Roles = RoleName.CanManageMovies)]
+
         //movies
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Index(int? pageIndex, string sortBy)
         {
             if (!pageIndex.HasValue)
